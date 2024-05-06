@@ -11,6 +11,7 @@
     "abs": "ts-node ./Abstraction.ts",
     "dip":"ts-node ./solid/DIP.ts",
     "single":"ts-node ./Creational/Singleton.ts",
-    "proto":"ts-node ./Creational/Prototype.ts"
+    "proto":"ts-node ./Creational/Prototype.ts",
+    "builder":"ts-node ./Creational/Builder.ts"
   }
 }
