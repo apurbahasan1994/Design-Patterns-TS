@@ -23,6 +23,19 @@ structures.
 interface
  */
 
+/* 
+
+
+Disadvantages:
+1. Over abstraction : Can lead to unnecessary level
+of abstraction
+2.Limited Flexibility :  Facades limits access to full functionality  of the
+subsystem.
+3. Hiding Useful information : Encasulation might hide
+beneficial subsytem behavior.
+
+*/
+
 class Grinder {
     grindeBeens() {
         console.log('gridning beens');
