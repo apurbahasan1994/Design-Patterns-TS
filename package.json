@@ -12,6 +12,7 @@
     "dip":"ts-node ./solid/DIP.ts",
     "single":"ts-node ./Creational/Singleton.ts",
     "proto":"ts-node ./Creational/Prototype.ts",
-    "builder":"ts-node ./Creational/Builder.ts"
+    "builder":"ts-node ./Creational/Builder.ts",
+    "factory":"ts-node ./Creational/Factory.ts"
   }
 }
