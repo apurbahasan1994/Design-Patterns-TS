@@ -98,4 +98,5 @@ const request = {
 
 let server = new BaseServer();
 server = new LoggingMiddleWare(server);
+server = new AuthMiddleWare(server);
 server.handle(request);
