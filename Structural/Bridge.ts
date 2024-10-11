@@ -12,81 +12,134 @@ When to use:
  */
 interface Color {
     applyColor(): void;
-  }
-  interface Shape {
+}
+interface Shape {
     draw(): void;
     setColor(color: Color): void;
-  }
-  class RedColor implements Color {
+}
+class RedColor implements Color {
     applyColor() {
-      console.log("Applying red color");
+        console.log("Applying red color");
     }
-  }
-  class BlueColor implements Color {
+}
+class BlueColor implements Color {
     applyColor() {
-      console.log("Applying blue color");
+        console.log("Applying blue color");
     }
-  }
-  class Circle implements Shape {
-    constructor(private color: Color) {}
+}
+class Circle implements Shape {
+    constructor(private color: Color) { }
     draw() {
-      console.log("Drawing Circle");
-      this.color.applyColor();
+        console.log("Drawing Circle");
+        this.color.applyColor();
     }
     setColor(color: Color) {
-      this.color = color;
+        this.color = color;
     }
-  }
-  class Square implements Shape {
-    constructor(private color: Color) {}
+}
+class Square implements Shape {
+    constructor(private color: Color) { }
     draw() {
-      console.log("Drawing Square");
-      this.color.applyColor();
+        console.log("Drawing Square");
+        this.color.applyColor();
     }
     setColor(color: Color) {
-      this.color = color;
+        this.color = color;
     }
-  }
-  // Create shapes with different colors
-  const redCircle = new Circle(new RedColor());
-  redCircle.draw();
-  const blueSquare = new Square(new BlueColor());
-  blueSquare.draw();
-  // Change color dynamically
-  blueSquare.setColor(new RedColor());
-  blueSquare.draw();
-  //another example
-  interface IPaymentSystem {
+}
+// Create shapes with different colors
+const redCircle = new Circle(new RedColor());
+redCircle.draw();
+const blueSquare = new Square(new BlueColor());
+blueSquare.draw();
+// Change color dynamically
+blueSquare.setColor(new RedColor());
+blueSquare.draw();
+//another example
+interface IPaymentSystem {
     processPayment(paymentSystem: string): void;
-  }
-  abstract class Payment {
+}
+abstract class Payment {
     public _iPaymentSystem: IPaymentSystem;
     abstract makePayment(): void;
-  }
-  class CitiBankPaymentSystem implements IPaymentSystem {
+}
+class CitiBankPaymentSystem implements IPaymentSystem {
     processPayment(paymentSystem: string): void {
-      console.log("payment with city bank");
+        console.log("payment with city bank");
     }
-  }
-  class DhakaBankPaymentSystem implements IPaymentSystem {
+}
+class DhakaBankPaymentSystem implements IPaymentSystem {
     processPayment(paymentSystem: string): void {
-      console.log("payment with city dhaka bank");
+        console.log("payment with city dhaka bank");
     }
-  }
-  class CardPayment extends Payment {
+}
+class CardPayment extends Payment {
     makePayment(): void {
-      this._iPaymentSystem.processPayment("Card payment");
+        this._iPaymentSystem.processPayment("Card payment");
     }
-  }
-  class NetPayment extends Payment {
+}
+class NetPayment extends Payment {
     makePayment(): void {
-      this._iPaymentSystem.processPayment("Net banking payment");
+        this._iPaymentSystem.processPayment("Net banking payment");
     }
-  }
-  //client
-  const main = () => {
+}
+//client
+const main = () => {
     const order: Payment = new CardPayment();
     order._iPaymentSystem = new CitiBankPaymentSystem();
     order.makePayment();
-  };
-  
+};
+
+
+interface MediaPlayerImplementation {
+    playAudio(): void;
+    playVideo(): void;
+}
+
+class WindowsMediaPlayer implements MediaPlayerImplementation {
+    playAudio(): void {
+        console.log('Playing audio');
+    }
+    playVideo(): void {
+        console.log('Playing video');
+    }
+
+}
+
+
+class MacMediaPlayer implements MediaPlayerImplementation {
+    playAudio(): void {
+        console.log('Playing audio');
+    }
+    playVideo(): void {
+        console.log('Playing video');
+    }
+
+}
+
+
+abstract class MediaPlayerAbstraction {
+    constructor(protected implementation: MediaPlayerImplementation) {
+
+    }
+    abstract playFile(): void;
+}
+
+
+class AudioPlayer extends MediaPlayerAbstraction {
+    playFile(): void {
+        this.implementation.playAudio();
+    }
+
+}
+
+class VideoPlayer extends MediaPlayerAbstraction {
+    playFile(): void {
+        this.implementation.playVideo();
+    }
+
+}
+
+//client
+let waudioPlayer = new AudioPlayer(new WindowsMediaPlayer());
+let macAudioPlayer = new AudioPlayer(new MacMediaPlayer());
