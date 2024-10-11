@@ -143,3 +143,57 @@ class VideoPlayer extends MediaPlayerAbstraction {
 //client
 let waudioPlayer = new AudioPlayer(new WindowsMediaPlayer());
 let macAudioPlayer = new AudioPlayer(new MacMediaPlayer());
+
+
+
+interface Database {
+    connect(): void;
+    query(filter: string): any;
+    close(): void;
+}
+
+
+class SqlDatabase implements Database {
+    connect(): void {
+        console.log('connecting to the database')
+    }
+    query(filter: string) {
+        console.log('filter is appyling', filter);
+        return null;
+    }
+    close(): void {
+        console.log('closing the connection')
+    }
+
+}
+
+class PostGresDatabase implements Database {
+    connect(): void {
+        console.log('connecting to the database')
+    }
+    query(filter: string) {
+        console.log('filter is appyling', filter);
+        return null;
+    }
+    close(): void {
+        console.log('closing the connection')
+    }
+
+}
+
+abstract class DatabaseService {
+    constructor(protected database: Database) {
+
+    }
+    abstract fetchData(query: string): any;
+}
+
+class ClientdatabaseService extends DatabaseService {
+    fetchData(query: string) {
+        this.database.connect();
+        const res = this.fetchData(query);
+        this.database.close();
+        return res;
+    }
+
+}
