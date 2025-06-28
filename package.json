@@ -13,6 +13,8 @@
     "single":"ts-node ./Creational/Singleton.ts",
     "proto":"ts-node ./Creational/Prototype.ts",
     "builder":"ts-node ./Creational/Builder.ts",
-    "factory":"ts-node ./Creational/Factory.ts"
+    "factory":"ts-node ./Creational/Factory.ts",
+    "mediator":"ts-node ./Behaviroal/Mediator.ts",
+    "mediator-obs":"ts-node ./Behaviroal/Mediator-With-Observer.ts"
   }
 }

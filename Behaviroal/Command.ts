@@ -142,3 +142,52 @@ remoteControl.pressUndo(); // Output: Light is ON
 // 50. When you want to implement a command pattern for user interface layout management, allowing for flexible layout commands.
 // 51. When you want to implement a command pattern for user interface component management, allowing for flexible component commands.          
        
+
+class Button{
+    private  label : string;
+    private command: Command;
+    constructor(label: string,command: Command) {
+        this.label = label;
+        this.command = command;
+    }
+    click(): void {
+        console.log(`Button ${this.label} clicked.`);
+        this.command.execute();
+    }
+    undo(): void {
+        console.log(`Undoing button ${this.label} action.`);
+        this.command.undo();
+    }
+}
+
+class AddCustomerCommand implements Command {
+    private service: CustomerService;
+     private customerName: string;
+    execute(): void {
+        console.log(`Adding customer ${this.customerName}.`);
+
+    }
+    undo(): void {
+        console.log(`Undoing add customer ${this.customerName}.`);
+        this.service.removeCustomer(this.customerName);
+    }
+    constructor(customerName: string,service: CustomerService) {
+        this.customerName = customerName;
+        this.service = service;
+    }   
+}
+
+class CustomerService{
+    addCustomer(name: string): void {
+        console.log(`Customer ${name} added.`);
+    }
+    removeCustomer(name: string): void {
+        console.log(`Customer ${name} removed.`);
+    }
+}
+
+const customerService = new CustomerService();
+const addCustomerCommand = new AddCustomerCommand("John Doe", customerService);
+const addCustomerButton = new Button("Add Customer", addCustomerCommand);
+addCustomerButton.click(); // Output: Button Add Customer clicked. Adding customer John Doe.
+addCustomerButton.undo(); // Output: Undoing button Add Customer action. Undoing add customer John Doe. Customer John Doe removed.

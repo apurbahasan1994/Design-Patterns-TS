@@ -10,6 +10,16 @@ in step by step or sequential manner.
 
 */
 
+// Explain Builder Pattern:
+// The Builder Pattern is a creational design pattern that allows for the step-by-step construction of complex objects.
+// It separates the construction of a complex object from its representation, allowing the same construction process to create different representations. This pattern is particularly useful when an object needs to be created with many optional parameters or when the construction process involves multiple steps.
+// It provides a way to construct an object by specifying its type and content, allowing for more readable and maintainable code.
+// Example: Building a Product with Billing Address
+// This code demonstrates the Builder Pattern by creating a Product with a Billing Address.
+// The ProductBuilder class constructs a Product object step by step, allowing for customization of its properties.
+// The Director class orchestrates the building process, ensuring that the Product is created with a minimal set of properties.
+
+
 
 interface IBillingAddress {
     zip: string;
